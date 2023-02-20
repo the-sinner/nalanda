@@ -17,7 +17,19 @@
 <body>
     <h1 class="heading">Nalanda</h1>
 
-    <div class="grid" id="bookgrid">
+
+    <div class="filter">
+        <label for="genres" style="float: left; margin-right: 10px;">Choose genres: </label>
+        <select name="genres" id="genres">
+            <option value="all">All</option>
+            <option value="scifi">Sci-fi</option>
+            <option value="drama">Drama</option>
+            <option value="historical">Historical</option>
+            <option value="action">Action</option>
+        </select>
+    </div>
+
+    <div class="grid" id="bookgrid" style="margin-top: 20px;">
         <div class="card">
             <a href="/epub.html?name=three-body-problem">
                 <div class="img-wrapper">
@@ -28,32 +40,32 @@
                 </div>
             </a>
         </div>
-        <div class="card">
-            <a href="./temp-epub.html">
-                <div class="card-contents">
-                    <div class="img-wrapper">
-                        <img src="./book-covers/3bp.jpeg" alt="The Three Body Problem" height="300px">
-                    </div>
-                    <div class="book-title">
-                        <span>The Three Body Problem</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
     </div>
+
+
     <script src="./book-data.js"></script>
     <script>
-        console.log(data);
+        // console.log(data);
         // https://stackoverflow.com/questions/54706080/generating-dynamic-html-cards-from-a-javascript-array
-        const container = document.getElementById('bookgrid');
-        data.books.forEach((result, idx) => {
-            // Create card element
-            const card = document.createElement('div');
-            card.classList = 'card-body';
+        function addCards() {
+            const container = document.getElementById('bookgrid');
+            const filter = document.getElementById('genres');
+            const filterCriteria = filter.value;
+            // console.log(filterCriteria)
+            let allCards = "";
+            data.books.forEach((result, idx) => {
+                let bookTags = new Set(result.tags);
+                if (filterCriteria != "all" && bookTags.has(filterCriteria) == false) {
+                    // https://stackoverflow.com/questions/8333403/how-can-i-use-continue-statement-in-foreach-method#8333447
+                    return
+                }
 
-            // Construct card content
-            const newCardContent = `
+                // Create card element
+                const card = document.createElement('div');
+                card.classList = 'card-body';
+
+                // Construct card content
+                const newCardContent = `
   <div class="card">
             <a href="/epub.html?name=${result.epub}">
                 <div class="card-contents">
@@ -68,9 +80,15 @@
         </div>
         `;
 
-            // Append newyly created card element to the container
-            container.innerHTML += newCardContent;
-        })
+                // Append newyly created card element to the container
+                allCards += newCardContent;
+            })
+            container.innerHTML = allCards;
+        }
+        window.onload = addCards;
+        // https://stackoverflow.com/questions/47058077/how-can-i-add-an-event-listener-to-a-select-element
+        document.querySelector('#genres').addEventListener("change", addCards);
+
     </script>
 </body>
 
