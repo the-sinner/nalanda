@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="./water.css"> -->
+    <link rel="stylesheet" href="./custom.css">
+    <!-- <script src="./jszip.min.js"></script>
+    <script src="./epub.js"></script> -->
+
+    <title>Nalanda</title>
+</head>
+
+<body>
+    <h1 class="heading">Nalanda</h1>
+
+    <div class="grid" id="bookgrid">
+        <div class="card">
+            <a href="/epub.html?name=three-body-problem">
+                <div class="img-wrapper">
+                    <img src="./book-covers/3bp.jpeg" alt="The Three Body Problem">
+                </div>
+                <div class="book-title">
+                    <span>The Three Body Problem</span>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="./temp-epub.html">
+                <div class="card-contents">
+                    <div class="img-wrapper">
+                        <img src="./book-covers/3bp.jpeg" alt="The Three Body Problem" height="300px">
+                    </div>
+                    <div class="book-title">
+                        <span>The Three Body Problem</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <script src="./book-data.js"></script>
+    <script>
+        console.log(data);
+        // https://stackoverflow.com/questions/54706080/generating-dynamic-html-cards-from-a-javascript-array
+        const container = document.getElementById('bookgrid');
+        data.books.forEach((result, idx) => {
+            // Create card element
+            const card = document.createElement('div');
+            card.classList = 'card-body';
+
+            // Construct card content
+            const newCardContent = `
+  <div class="card">
+            <a href="/epub.html?name=${result.epub}">
+                <div class="card-contents">
+                    <div class="img-wrapper">
+                        <img src="./book-covers/${result.cover}" alt="${result.name}">
+                    </div>
+                    <div class="book-title">
+                        <span>${result.name}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        `;
+
+            // Append newyly created card element to the container
+            container.innerHTML += newCardContent;
+        })
+    </script>
+</body>
+
+</html>
