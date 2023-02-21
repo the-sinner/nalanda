@@ -15,21 +15,29 @@
 </head>
 
 <body>
-    <h1 class="heading">Nalanda</h1>
 
 
-    <div class="filter">
-        <label for="genres" style="float: left; margin-right: 10px;">Choose genres: </label>
-        <select name="genres" id="genres">
-            <option value="all">All</option>
-            <option value="scifi">Sci-fi</option>
-            <option value="drama">Drama</option>
-            <option value="historical">Historical</option>
-            <option value="action">Action</option>
-        </select>
+    <div class="hero">
+        <h1 class="heading">Nalanda</h1>
+        <div class="summary">Read ebooks provided by Standard Ebooks online.</div>
+    </div>
+
+    <div style="display: flex; justify-content:space-between">
+        <div class="filter">
+            <label for="genres" style="float: left; margin-right: 10px;">Choose genres: </label>
+            <select name="genres" id="genres">
+            </select>
+        </div>
+        <div class="local" style="display:flex; justify-content:end">
+            <!-- <input type="file" name="localepub" id="localepub" accept=".epub">
+            <button onclick="showLocalEpub()">Go</button>
+            <button onclick="(function(){document.getElementById('localepub').value = '';})()">Reset</button> -->
+            <!-- Inline function SO10607847 -->
+        </div>
     </div>
 
     <div class="grid" id="bookgrid" style="margin-top: 20px;">
+        <!--
         <div class="card">
             <a href="/epub.html?name=three-body-problem">
                 <div class="img-wrapper">
@@ -40,6 +48,7 @@
                 </div>
             </a>
         </div>
+-->
     </div>
 
 
@@ -85,9 +94,43 @@
             })
             container.innerHTML = allCards;
         }
-        window.onload = addCards;
+
+        function addFilterOptions() {
+            const filter = document.getElementById('genres');
+            let allTags = ""
+            tags.forEach((result, idx) => {
+                let tag = result[0].toUpperCase() + result.substr(1);;
+                let optionContent = `
+            <option value="${result}">${tag}</option>
+            `;
+                allTags += optionContent;
+            })
+            filter.innerHTML = allTags;
+        }
+
+        function runOnLoad() {
+            addFilterOptions();
+            addCards();
+        }
+        window.onload = runOnLoad;
         // https://stackoverflow.com/questions/47058077/how-can-i-add-an-event-listener-to-a-select-element
         document.querySelector('#genres').addEventListener("change", addCards);
+
+        // function showLocalEpub() {
+        //     var fileInput = document.getElementById("localepub");
+        //     if (fileInput && fileInput.value) {
+        //         const filename = fileInput.files[0].name;
+        //         console.log(fileInput.files[0].name)
+        //         // const ePubLink = URL.createObjectURL(fileInput.files[0])
+        //         console.log(filename);
+
+        //         location.href = "/localepub.html?name=" + filename;
+        //     } else {
+        //         alert("Enter local epub file !");
+        //     }
+        // }
+
+
 
     </script>
 </body>

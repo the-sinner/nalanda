@@ -1,3 +1,7 @@
 .DS_Store
 /book-covers
 /epub
+.surgeignore
+CNAME
+todo.txt
+localepub.html
