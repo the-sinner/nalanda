@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="#" type="image/x-icon">
-    <!-- <link rel="stylesheet" href="./water.css"> -->
+    <link rel="stylesheet" href="./water.css">
     <link rel="stylesheet" href="./custom.css">
     <!-- <script src="./jszip.min.js"></script>
     <script src="./epub.js"></script> -->
@@ -36,6 +36,7 @@
         </div>
     </div>
 
+    
     <div class="grid" id="bookgrid" style="margin-top: 20px;">
         <!--
         <div class="card">
@@ -75,19 +76,26 @@
 
                 // Construct card content
                 const newCardContent = `
-  <div class="card">
-            <a href="/epub.html?name=${result.epub}">
+            <div class="card">
                 <div class="card-contents">
-                    <div class="img-wrapper">
+                    <a href="/epub.html?name=${result.epub}"><div class="img-wrapper">
                         <img src="./book-covers/${result.cover}" alt="${result.name}">
-                    </div>
-                    <div class="book-title">
-                        <span>${result.name}</span>
+                    </div></a>
+                    <div class="know-more">
+                        <button type="button" class="dialog-trigger"> Know More </button>
+                        
+                        <dialog class="dialog"> 
+                            <header>${result.name}</header>
+                                <span>Book Name : ${result.name}</span> <a href="${result.bookWikiLink}" target="_blank"><img style="height: 20px;" src="./img/wiki.png" /></a> <br>
+                                <span>Author : ${result.author}</span> <a href="${result.authorWikiLink}" target="_blank"><img style="height: 20px;" src="./img/wiki.png" /></a>  <br>
+                                <span>Tags : ${result.tags.join(", ")}</span> <br>
+                                <button class="close-dialog" type="reset">Cancel</button> 
+                        </dialog>
                     </div>
                 </div>
-            </a>
-        </div>
+            </div>
         `;
+                // <span>${result.name}</span>
 
                 // Append newyly created card element to the container
                 allCards += newCardContent;
@@ -108,14 +116,41 @@
             filter.innerHTML = allTags;
         }
 
+        function addModalWorking() {
+            // SO51573435
+            [...document.querySelectorAll('.dialog-trigger')].forEach(function (item) {
+                item.addEventListener('click', function () {
+                    // console.log(this.nextElementSibling);
+                    // console.log(document.getElementById('dialog'))
+                    this.nextElementSibling.showModal();
+                });
+            });
+
+            // const closeDialog = document.querySelectorAll('.know-more');
+            // console.log(closeDialog);
+            [...document.querySelectorAll('.close-dialog')].forEach(function (item) {
+                item.addEventListener('click', function () {
+                    // console.log(this)
+                    this.parentElement.close()
+                });
+            });
+        }
+
+
         function runOnLoad() {
             addFilterOptions();
             addCards();
+            addModalWorking();
+            document.querySelector('#genres').addEventListener("change", addCards);
         }
         window.onload = runOnLoad;
         // https://stackoverflow.com/questions/47058077/how-can-i-add-an-event-listener-to-a-select-element
-        document.querySelector('#genres').addEventListener("change", addCards);
 
+
+
+            // document.getElementById('dialog').addEventListener('close', (function (e) {
+            //     document.getElementById('dialog-result').innerText = 'Your answer: '.concat(e.target.returnValue)
+            // }));
         // function showLocalEpub() {
         //     var fileInput = document.getElementById("localepub");
         //     if (fileInput && fileInput.value) {

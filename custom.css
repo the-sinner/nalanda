@@ -46,12 +46,22 @@ a {
     border: 2px solid #e7e7e7;
     border-radius: 4px;
     padding: .5rem;
-}
-
-.book-title {
     text-align: center;
 }
 
+.dialog {
+    text-align: left;
+    width: 500px;
+    height: 400px;
+    line-height: 3;
+}
+.close-button {
+    text-align: center
+}
+
+.dialog img {
+    background-color: white;
+}
 img {
     max-width: 100%;
     height: auto;
