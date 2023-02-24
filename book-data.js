@@ -8,16 +8,6 @@
 const data = {
     "books": [       
         {
-            "id":"1",
-            "name":"Frankenstein",
-            "author":"Mary Shelley",
-            "cover":"f.jpg",
-            "epub":"mary-shelley_frankenstein",
-            "tags":["scifi"],
-            "authorWikiLink":"https://en.wikipedia.org/wiki/Mary_Shelley",
-            "bookWikiLink":"https://en.wikipedia.org/wiki/Frankenstein",
-        },
-        {
             "id":"2",
             "name":"At the Earth's Core",
             "author":"Edgar Rice Burroughs",
@@ -146,6 +136,16 @@ const data = {
             "tags":["fiction", "mystery"],
             "authorWikiLink":"https://en.wikipedia.org/wiki/Agatha_Christie",
             "bookWikiLink":"https://en.wikipedia.org/wiki/The_Mysterious_Affair_at_Styles",
+        },
+        {
+            "id":"1",
+            "name":"Frankenstein",
+            "author":"Mary Shelley",
+            "cover":"f.jpg",
+            "epub":"mary-shelley_frankenstein",
+            "tags":["scifi"],
+            "authorWikiLink":"https://en.wikipedia.org/wiki/Mary_Shelley",
+            "bookWikiLink":"https://en.wikipedia.org/wiki/Frankenstein",
         },
         {
             "id":"15",
