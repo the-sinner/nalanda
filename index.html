@@ -18,8 +18,8 @@
 
 
     <div class="hero">
-        <h1 class="heading">Nalanda</h1>
-        <div class="summary">Read ebooks provided by Standard Ebooks online.</div>
+        <h1 class="heading" style="margin-bottom: 50px; margin-top: 50px;">Nalanda</h1>
+        <div class="summary" style="margin-bottom: 100px; font-family: Helvetica Neue; font-size: larger;">Read ebooks provided by Standard Ebooks online.</div>
     </div>
 
     <div style="display: flex; justify-content:space-between">
@@ -78,7 +78,7 @@
                 const newCardContent = `
             <div class="card">
                 <div class="card-contents">
-                    <a href="/epub.html?name=${result.epub}"><div class="img-wrapper">
+                    <a href="/epub.html?name=${result.epub}" target="_blank"><div class="img-wrapper">
                         <img src="./book-covers/${result.cover}" alt="${result.name}">
                     </div></a>
                     <div class="know-more">
