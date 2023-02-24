@@ -28,35 +28,22 @@
             <select name="genres" id="genres">
             </select>
         </div>
-        <div class="local" style="display:flex; justify-content:end">
-            <!-- <input type="file" name="localepub" id="localepub" accept=".epub">
+        <!-- <div class="local" style="display:flex; justify-content:end">
+            <input type="file" name="localepub" id="localepub" accept=".epub">
             <button onclick="showLocalEpub()">Go</button>
-            <button onclick="(function(){document.getElementById('localepub').value = '';})()">Reset</button> -->
-            <!-- Inline function SO10607847 -->
-        </div>
+            Inline function SO10607847
+            <button onclick="(function(){document.getElementById('localepub').value = '';})()">Reset</button>    
+        </div> -->
     </div>
 
     
-    <div class="grid" id="bookgrid" style="margin-top: 20px;">
-        <!--
-        <div class="card">
-            <a href="/epub.html?name=three-body-problem">
-                <div class="img-wrapper">
-                    <img src="./book-covers/3bp.jpeg" alt="The Three Body Problem">
-                </div>
-                <div class="book-title">
-                    <span>The Three Body Problem</span>
-                </div>
-            </a>
-        </div>
--->
-    </div>
+    <div class="grid" id="bookgrid" style="margin-top: 20px;"></div>
 
 
     <script src="./book-data.js"></script>
     <script>
         // console.log(data);
-        // https://stackoverflow.com/questions/54706080/generating-dynamic-html-cards-from-a-javascript-array
+        // SO54706080
         function addCards() {
             const container = document.getElementById('bookgrid');
             const filter = document.getElementById('genres');
@@ -66,7 +53,7 @@
             data.books.forEach((result, idx) => {
                 let bookTags = new Set(result.tags);
                 if (filterCriteria != "all" && bookTags.has(filterCriteria) == false) {
-                    // https://stackoverflow.com/questions/8333403/how-can-i-use-continue-statement-in-foreach-method#8333447
+                    // SO8333403
                     return
                 }
 
@@ -95,12 +82,11 @@
                 </div>
             </div>
         `;
-                // <span>${result.name}</span>
-
                 // Append newyly created card element to the container
                 allCards += newCardContent;
             })
             container.innerHTML = allCards;
+            addModalWorking();
         }
 
         function addFilterOptions() {
@@ -140,7 +126,7 @@
         function runOnLoad() {
             addFilterOptions();
             addCards();
-            addModalWorking();
+            // addModalWorking();
             document.querySelector('#genres').addEventListener("change", addCards);
         }
         window.onload = runOnLoad;
